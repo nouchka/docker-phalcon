@@ -2,7 +2,7 @@ FROM debian:jessie
 MAINTAINER Jean-Avit Promis "docker@katagena.com"
 
 RUN apt-get update && \
-	DEBIAN_FRONTEND=noninteractive apt-get -yq install apache2 libapache2-mod-php5 wget unzip php5-dev php5-mcrypt php5-curl php5-pgsql php5-mysql php5-sqlite php5-mongo php5-memcached php5-xdebug php-apc php5-imagick php5-gd php5-geoip gcc git libpcre3-dev && \
+	DEBIAN_FRONTEND=noninteractive apt-get -yq install subversion apache2 libapache2-mod-php5 wget unzip php5-dev php5-mcrypt php5-curl php5-pgsql php5-mysql php5-sqlite php5-mongo php5-memcached php5-xdebug php-apc php5-imagick php5-gd php5-geoip gcc git libpcre3-dev && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -31,6 +31,9 @@ RUN wget --no-check-certificate https://github.com/rmccue/Requests/archive/v1.6.
 
 RUN echo "<?php phpinfo();?>" > /var/www/index.php
 
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
+
 EXPOSE 80
 
-CMD ["/usr/sbin/apache2","-DFOREGROUND"]
+CMD /start.sh
