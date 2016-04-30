@@ -5,6 +5,3 @@ services:
     container_name: "phalcon"
     ports:
       - "80:80"
-    volumes:
-      - ./000-default.conf:/etc/apache2/sites-enabled/000-default.conf
-    

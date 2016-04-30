@@ -21,6 +21,8 @@ ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_RUN_DIR /var/run/apache2
 ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
 
+ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
+RUN a2ensite 000-default
 
 RUN wget --no-check-certificate https://github.com/rmccue/Requests/archive/v1.6.0.zip && \
 	unzip v1.6.0.zip && \
