@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ ! -f "$APACHE_PID_FILE" ] || rm -f $APACHE_PID_FILE
+
 chmod +x /init.sh
 /init.sh
 
